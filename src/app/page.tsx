@@ -2,28 +2,25 @@
 
 import { WalletDisconnectButton, WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import WebApp from "@twa-dev/sdk";
+import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useLayoutEffect } from "react";
 
-// const WalletDisconnectButtonDynamic = dynamic(
-//   async () => (await import("@solana/wallet-adapter-react-ui")).WalletDisconnectButton,
-//   { ssr: false }
-// );
-// const WalletMultiButtonDynamic = dynamic(
-//   async () => (await import("@solana/wallet-adapter-react-ui")).WalletMultiButton,
-//   { ssr: false }
-// );
-
-WebApp.ready();
+const AlertButtonDynamic = dynamic(() => import("./components/AlertButton"), { ssr: false });
 
 export default function Home() {
-  console.log("🚀 ~ WebApp:", WebApp);
+  useLayoutEffect(() => {
+    WebApp.ready();
+    console.log("🚀 ~ WebApp:", WebApp);
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
         <div className={"flex justify-center items-center py-10 gap-4"}>
           <WalletDisconnectButton />
           <WalletMultiButton />
-          <button onClick={() => WebApp.showAlert(`Hello World!`)}>Show Alert</button>
+          <AlertButtonDynamic />
         </div>
       </div>
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
