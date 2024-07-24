@@ -22,8 +22,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <SolanaProvider>{children}</SolanaProvider>
+        <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
       </body>
-      <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
     </html>
   );
 }

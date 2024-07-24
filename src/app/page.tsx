@@ -16,12 +16,14 @@ import Image from "next/image";
 WebApp.ready();
 
 export default function Home() {
+  console.log("🚀 ~ WebApp:", WebApp);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div>
         <div className={"flex justify-center items-center py-10 gap-4"}>
           <WalletDisconnectButton />
           <WalletMultiButton />
+          <button onClick={() => WebApp.showAlert(`Hello World!`)}>Show Alert</button>
         </div>
       </div>
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
